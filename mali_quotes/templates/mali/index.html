@@ -1,22 +1,38 @@
+{% load i18n %}
+{% trans "Muhammad Ali" as quote_author %}
+{% get_available_languages as LANGUAGES %}
 <!doctype html>
 
 <html lang="en">
 <head>
     <meta charset="utf-8">
 
-    <title>Muhammad Ali's Best best quotes</title>
-    <meta name="description" content="Muhammad Ali's Best quotes on many topics">
+    {% comment %}Translators: Title in HTML head{% endcomment %}
+    <title>{% blocktrans %}{{ quote_author }}'s Best Quotes{% endblocktrans %}</title>
+    <meta name="description" content="{%  trans "Muhammad Ali's Best quotes on many topics" %}">
     <meta name="author" content="Eduard Gamonal">
 </head>
 
 <body>
 
-<h1>Muhammad Ali's Best quotes</h1>
+{% comment %}Translators: Title in the body{% endcomment %}
+<h1>{% blocktrans %}{{ quote_author }}'s Best Quotes{% endblocktrans %}</h1>
+<p>{% blocktrans %}This page is available in the following languages {{ LANGUAGES }}{% endblocktrans %}</p>
+<p>{% blocktrans %}Welcome to the largest website about Muhammad Ali's quotes{% endblocktrans %}</p>
 
-<p>Welcome to the largest website about Muhammad Ali's quotes</p>
-<strong>"I'm young; I'm handsome; I'm fast. I can't possibly be beat."</strong>
+<p>
+{% blocktrans count counter=latest_quotes|length %}
+Today is {{ current_date }} and we have {{ counter }} quote.
+{% plural %}
+Today is {{ current_date }} and we have {{ counter }} quotes.
+{% endblocktrans %}
+</p>
 
-<p>Can you apply this to your life?</p>
+
+
+<strong>{% blocktrans %}"I'm young; I'm handsome; I'm fast. I can't possibly be beat."{% endblocktrans %}</strong>
+
+<p>{% blocktrans %}Can you apply this to your life?{% endblocktrans %}</p>
 {% if latest_quotes %}
     <ul>
         {% for q in latest_quotes %}
@@ -24,6 +40,6 @@
         {% endfor %}
     </ul>
 {% else %}
-    <p>No quptes are available.</p>
+    <p>{%  trans "No quotes are available." %}</p>
 {% endif %}
 </body>
