@@ -1,3 +1,16 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Muhammad Ali's Best best quotes</title>
+    <meta name="description" content="Muhammad Ali's Best quotes on many topics">
+    <meta name="author" content="Eduard Gamonal">
+</head>
+
+<body>
+
 <h1>Muhammad Ali's Best quotes</h1>
 
 <p>Welcome to the largest website about Muhammad Ali's quotes</p>
@@ -6,10 +19,11 @@
 <p>Can you apply this to your life?</p>
 {% if latest_quotes %}
     <ul>
-    {% for q in latest_quotes %}
-        <li>{{ q }}</li>
-    {% endfor %}
+        {% for q in latest_quotes %}
+            <li>{{ q }}</li>
+        {% endfor %}
     </ul>
 {% else %}
     <p>No quptes are available.</p>
 {% endif %}
+</body>
